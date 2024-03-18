@@ -19,16 +19,15 @@ interface LoginComponentProps {
   isLoggedIn: boolean;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
   loginUser: any
-  variant: 'bank' | 'airlines' | 'market';
   name: string;
 }
 
-export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, variant, name }: LoginComponentProps) {
+export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: LoginComponentProps) {
   const inputRef = useRef();
   const [activeElement, setActiveElement] = useState(null);
   const [defaultEmail, setDefaultEmail] = useState('jenn@launchmail.io');
-  const variantClass = getVariantClassName(variant);
-  const [isAddUserDialogOpen, setIsAddUserDialogOpen] = useState(false);
+  const variantClass = "bg-gradient-to-r from-marketblue text-black to-marketgreen text-black";
+
   const [newPersona, setNewPersona] = useState({ name: '', type: '', image: '', email: '' });
   const { personas, addPersona, deleteAllPersonas, getPersonas } = useContext(PersonaContext);
   const [isAddUserDropdownOpen, setIsAddUserDropdownOpen] = useState(false);
@@ -107,12 +106,8 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, variant, 
     }
   }, [activeElement]);
 
-  const variantToImageMap = {
-    bank: "ToggleBankBlue.png",
-    airlines: "/launch-airways.svg",
-    market: "/market.png",
-  };
-  const imageSrc = variantToImageMap[variant];
+ 
+  const imageSrc = "/market.png";
 
   const toggleAddUserDropdown = () => {
     setIsAddUserDropdownOpen(!isAddUserDropdownOpen);

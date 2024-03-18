@@ -23,7 +23,7 @@ interface NavBarProps {
   cart: InventoryItem[];
   personas: Persona[];
   setCart: React.Dispatch<React.SetStateAction<InventoryItem[]>>;
-  variant: string;
+
 }
 
 interface Persona {
@@ -35,7 +35,7 @@ interface Persona {
 }
 
 const NavBar = React.forwardRef<any, NavBarProps>(
-  ({ cart, setCart, className, variant, handleLogout, ...props }, ref) => {
+  ({ cart, setCart, className, handleLogout, ...props }, ref) => {
     const { isLoggedIn, user } = useContext(LoginContext);
     let navChild, navLogo, navLinkMobileDropdown, navLinksGroup;
     const navLinkStyling =
@@ -94,7 +94,7 @@ const NavBar = React.forwardRef<any, NavBarProps>(
                       >
                         Logout
                       </Button>
-                      <QuickLoginDialog personas={personas} variant={variant} />
+                      <QuickLoginDialog personas={personas} />
                     </div>
                   </>
                 </PopoverContent>
