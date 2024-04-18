@@ -54,7 +54,7 @@ export function VRgalaxy({
 
   const [inventory, setInventory] = useState([]);
 
- 
+
 
   useEffect(() => {
     fetch("/api/storeInventory?storename=vrgalaxy")
@@ -85,10 +85,12 @@ export function VRgalaxy({
                 damping: 20,
                 duration: 1.5,
               }}
-              className="flex justify-center absolute top-[-30px] z-10 bg-gradient-experimentation px-2 py-2 w-2/3 shadow-xl "
+              className="flex justify-center absolute top-[10px] right-[20px] z-10 bg-[#EBFF38] px-2 py-2 w-1/6 h-auto  shadow-xl shadow-[#3DD6F5] "
             >
-              <p className="flex items-center font-sohne mx-auto uppercase text-white text-xl text-center">
-                {headerLabel}
+              <p className="flex items-center font-sohne mx-auto uppercase text-xs text-black text-center flex-col">
+                {headerLabel.split('').map((char, index) => (
+                  char === ' ' ? <span key={index}>&nbsp;</span> : <span key={index}>{char}</span>
+                ))}
               </p>
             </motion.div>
           )}

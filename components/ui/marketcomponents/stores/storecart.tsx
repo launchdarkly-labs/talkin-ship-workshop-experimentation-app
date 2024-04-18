@@ -89,16 +89,19 @@ export function StoreCart({ cart, setCart }:{cart: any, setCart: any}) {
           </TableBody>
         </Table>
         <SheetFooter>
-          <div className="mr-16 mt-10">
-            <p className="pb-4 font-sohne ml-auto">
-              Transaction Total: ${totalCost}
+          <div className="flex justify-between items-center w-full">
+            <p className="font-sohne">
+              Transaction Total:
             </p>
-            <SheetTrigger onClick={checkOut} asChild>
-              <Button onClick={checkOutTracking} className="checkout w-full">
-                Checkout
-              </Button>
-            </SheetTrigger>
+            <p className="font-sohne ml-auto">
+              ${totalCost}
+            </p>
           </div>
+          <SheetTrigger asChild>
+          <Button onClick={checkOut} className="checkout w-full mt-4">
+            Checkout
+          </Button>
+          </SheetTrigger>
         </SheetFooter>
       </SheetContent>
     </Sheet>

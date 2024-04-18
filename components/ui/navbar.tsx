@@ -1,6 +1,6 @@
 //@ts-nocheck
 import * as React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Search, PanelTopOpen } from "lucide-react";
 import { Avatar, AvatarImage } from "./avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
@@ -42,17 +42,17 @@ const NavBar = React.forwardRef<any, NavBarProps>(
       "hidden sm:block pb-12 pt-1.5 bg-transparent mr-4 flex items-start text-sm font-sohnelight font-medium transition-colors bg-no-repeat bg-bottom";
 
     const { personas } = useContext(PersonaContext);
+    const chosenPersona = personas.find(
+      (persona) => persona.personaname === user
+    );
+    const { launchClubStatus } = useContext(LoginContext);
 
     navChild = (
       <>
         {!isLoggedIn ? null : (
           <>
             <div className="flex space-x-3 sm:space-x-6 ml-auto sm:mr-4 items-center">
-              <StoreCart cart={cart} setCart={setCart} />
-              <Search color={"white"} className="hidden sm:block cursor-pointer" />
-              <div className="hidden sm:block cursor-pointer text-white">
-                <QRCodeImage />
-              </div>
+              <StoreCart cart={cart} setCart={setCart} />             
 
               <Popover>
                 <PopoverTrigger>
@@ -77,20 +77,20 @@ const NavBar = React.forwardRef<any, NavBarProps>(
                         className="rounded-full h-48"
                       />
                     </div>
-                    <div className="mx-auto text-center  align-center flex text-black font-sohnelight pt-4  text-xl items-center align-center">
-                      <p className="pt-4">
-                        Thank you{" "}
-                        {personas.find((persona) => persona.personaname === user)?.personaname ||
-                          user}{" "}
-                        for shopping with us as{"  "}
-                        <br></br>
-                        <span className="text-2xl">Premium Member</span>!
-                      </p>
-                    </div>
                     <div className="mx-auto text-center">
+                    <p className="text-2xl font-normal text-black font-shone mt-4">
+                      Hi {chosenPersona?.personaname}
+                    </p>
+                  </div>
+                  <div className="mx-auto text-center">
+                    <p className="text-md uppercase font-normal tracking-widest text-[#939598] font-shone mt-0">
+                      PLATINUM MEMBER
+                    </p>
+                  </div>
+                    <div className="mx-auto text-center mt-4">
                       <Button
                         onClick={handleLogout}
-                        className=" bg-red-700 items-center font-audimat my-2 w-full bg-gradient-to-r from-marketblue text-black to-marketgreen text-xl rounded-none"
+                        className="items-center hover:bg-marketgradient2 hover:text-white font-audimat my-2 w-full bg-marketgradient1 text-black text-xl rounded-none"
                       >
                         Logout
                       </Button>

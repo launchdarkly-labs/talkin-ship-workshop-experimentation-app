@@ -7,15 +7,29 @@ export const PersonaProvider = ({ children }) => {
   const [personas, setPersonas] = useState([]);
   const [error, setError] = useState(null);
 
-  const getPersonas = async () => {
-    fetch("/api/personas?personaToQuery=all")
-      .then((response) => response.json())
-      .then((data) => {
-        setPersonas(data);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+  const getPersonas =  () => {
+
+    const starterPersonas = [
+      {
+        personaname: "Cody",
+        personatype: "Standard User",
+        personaimage: "standard.jpg",
+        personaemail: "cody@launchmail.io",
+      },
+      {
+        personaname: "Alysha",
+        personatype: "Beta User",
+        personaimage: "beta.png",
+        personaemail: "alysha@launchmail.io",
+      },
+      {
+        personaname: "Jenn",
+        personatype: "Developer",
+        personaimage: "woman.png",
+        personaemail: "jenn@launchmail.io",
+      },
+    ]; 
+    setPersonas(starterPersonas);
   }
 
   const addPersona = async (newPersona) => {
