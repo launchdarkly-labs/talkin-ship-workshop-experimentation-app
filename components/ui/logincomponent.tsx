@@ -159,8 +159,8 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: L
               ) : (
                 <div className="overflow-y-auto h-64">
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 justify-items-center mb-4 pt-6">
-                    {personas.map((item: Persona) => (
-                      <div className="flex flex-col items-center" key={item.id}>
+                    {personas.map((item: Persona, index) => (
+                      <div className="flex flex-col items-center" key={index}>
                         <img
                           src={item.personaimage}
                           className={`w-24 rounded-full mb-4 ${activeElement === item.personaname ? 'border-4 border-black' : ''}`}
@@ -217,13 +217,14 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: L
                           </div>
                           <div className="mb-0 overflow-x-auto rounded">
                             <div className="flex space-x-4 p-2">
-                              {['persona1.png', 'persona2.png', 'persona3.png', 'persona4.png', 'persona5.png'].map((imageName) => (
+                              {['persona1.png', 'persona2.png', 'persona3.png', 'persona4.png', 'persona5.png'].map((imageName, index) => (
                                 <img
                                   key={imageName}
                                   src={`/personas/${imageName}`}
                                   alt={imageName}
                                   className={`w-24 h-24 rounded-full cursor-pointer ${newPersona.image === `/personas/${imageName}` ? 'border-4 border-blue-500' : ''}`}
                                   onClick={() => setNewPersona({ ...newPersona, image: `/personas/${imageName}` })}
+                                  key={index}
                                 />
                               ))}
                             </div>

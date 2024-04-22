@@ -85,13 +85,14 @@ export function VRgalaxy({
                 damping: 20,
                 duration: 1.5,
               }}
-              className="flex justify-center absolute top-[10px] right-[20px] z-10 bg-[#EBFF38] px-2 py-2 w-1/6 h-auto  shadow-xl shadow-[#3DD6F5] "
+              className="flex justify-center absolute top-[10px] right-[20px] z-10 bg-[#EBFF38] px-2 py-2  h-auto w-auto  shadow-xl shadow-[#3DD6F5] marketplace-item-banner"
             >
-              <p className="flex items-center font-sohne mx-auto uppercase text-xs text-black text-center flex-col">
-                {headerLabel.split('').map((char, index) => (
+              <p className="flex items-center font-sohne uppercase text-xs text-black text-center flex-col justify-between  gap-x-2 w-full px-2">
+                {"Final Hours!".split('').map((char, index) => (
                   char === ' ' ? <span key={index}>&nbsp;</span> : <span key={index}>{char}</span>
                 ))}
               </p>
+             
             </motion.div>
           )}
           <img src="gaming.png" alt="VR Gaming" className="h-[300px] sm:h-[350px] z-0" />
