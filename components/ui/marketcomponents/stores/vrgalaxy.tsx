@@ -54,8 +54,6 @@ export function VRgalaxy({
 
   const [inventory, setInventory] = useState([]);
 
-
-
   useEffect(() => {
     fetch("/api/storeInventory?storename=vrgalaxy")
       .then((response) => response.json())
@@ -85,14 +83,15 @@ export function VRgalaxy({
                 damping: 20,
                 duration: 1.5,
               }}
-              className="flex justify-center absolute top-[10px] right-[20px] z-10 bg-[#EBFF38] px-2 py-2  h-auto w-auto  shadow-xl shadow-[#3DD6F5] marketplace-item-banner"
+              className="flex justify-center absolute top-[10px] right-[20px] z-10 bg-[#EBFF38] px-4 pt-2 pb-[2rem] h-auto marketplace-item-banner-cutout shadow-xl shadow-[#3DD6F5]"
             >
-              <p className="flex items-center font-sohne uppercase text-xs text-black text-center flex-col justify-between  gap-x-2 w-full px-2">
-                {"Final Hours!".split('').map((char, index) => (
-                  char === ' ' ? <span key={index}>&nbsp;</span> : <span key={index}>{char}</span>
-                ))}
+              <p className="flex font-sohne uppercase text-xs text-black text-center flex-col justify-around mb-1.5 w-full">
+                {"final sale!"
+                  .split("")
+                  .map((char, index) =>
+                    char === " " ? <span key={index}>&nbsp;</span> : <span key={index}>{char}</span>
+                  )}
               </p>
-             
             </motion.div>
           )}
           <img src="gaming.png" alt="VR Gaming" className="h-[300px] sm:h-[350px] z-0" />
@@ -101,9 +100,7 @@ export function VRgalaxy({
 
       <SheetContent className="w-3/4 lg:w-1/2" side="right">
         <SheetHeader>
-          <SheetTitle className="font-sohne text-2xl">
-            Welcome to VR Galaxy
-          </SheetTitle>
+          <SheetTitle className="font-sohne text-2xl">Welcome to VR Galaxy</SheetTitle>
 
           <SheetDescription className="font-sohne">
             Your home for todays VR equipment!
