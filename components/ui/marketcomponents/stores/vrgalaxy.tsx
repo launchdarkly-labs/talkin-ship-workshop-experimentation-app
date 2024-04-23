@@ -83,10 +83,10 @@ export function VRgalaxy({
                 damping: 20,
                 duration: 1.5,
               }}
-              className="flex justify-center absolute top-[10px] right-[20px] z-10 bg-[#EBFF38] px-4 pt-2 pb-[2rem] h-auto marketplace-item-banner-cutout shadow-xl shadow-[#3DD6F5]"
+              className="flex justify-center absolute top-[10px] right-[20px] z-10 bg-[#EBFF38] px-4 pt-2 pb-[2rem] h-auto marketplace-item-banner-cutout !shadow-xl !shadow-[#3DD6F5]"
             >
               <p className="flex font-sohne uppercase text-xs text-black text-center flex-col justify-around mb-1.5 w-full">
-                {"final sale!"
+                {headerLabel
                   .split("")
                   .map((char, index) =>
                     char === " " ? <span key={index}>&nbsp;</span> : <span key={index}>{char}</span>
