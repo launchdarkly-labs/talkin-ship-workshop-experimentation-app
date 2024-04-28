@@ -3,7 +3,6 @@ import {
   Sheet,
   // SheetClose,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
@@ -29,6 +28,7 @@ interface InventoryItem {
   id: string | number;
   item: string;
   cost: number;
+  image: string;
 }
 
 const ProductInventoryComponent = ({
@@ -36,7 +36,6 @@ const ProductInventoryComponent = ({
   open,
   addToCart,
   sheetTitle,
-  sheetDescription,
   tableCaption,
   inventory,
   mainImg,
@@ -47,7 +46,6 @@ const ProductInventoryComponent = ({
   open: boolean;
   addToCart: any;
   sheetTitle?: string;
-  sheetDescription?: string;
   tableCaption?: string;
   inventory: any;
   mainImg: any;
@@ -80,10 +78,12 @@ const ProductInventoryComponent = ({
                 damping: 20,
                 duration: 1.5,
               }}
-              className="flex justify-center absolute top-[-30px] z-10 bg-gradient-experimentation px-2 py-2 w-2/3 shadow-xl "
+              className="flex justify-center absolute top-[10px] right-[20px] z-10 bg-[#EBFF38] px-4 pt-2 pb-[2rem] h-auto marketplace-item-banner-cutout"
             >
-              <p className="flex items-center font-sohne mx-auto uppercase text-white text-xl text-center">
-                {headerLabel}
+              <p className="flex font-sohne uppercase text-xs text-black text-center flex-col justify-around mb-1.5 w-full">
+                {headerLabel?.split("").map((char, index) =>
+                    char === " " ? <span key={index}>&nbsp;</span> : <span key={index}>{char}</span>
+                  )}
               </p>
             </motion.div>
           )}
@@ -100,21 +100,24 @@ const ProductInventoryComponent = ({
           <SheetTitle className="font-sohne text-2xl  bg-gradient-experimentation text-transparent bg-clip-text">
             {sheetTitle}
           </SheetTitle>
-
-          <SheetDescription className="font-sohne">{sheetDescription}</SheetDescription>
         </SheetHeader>
         <Table className="">
           <TableCaption className="bg-gradient-experimentation text-transparent bg-clip-text font-bold text-base">{tableCaption}</TableCaption>
           <TableHeader>
             <TableRow>
+              <TableHead>Image</TableHead>
               <TableHead>Item</TableHead>
               <TableHead>Price</TableHead>
               <TableHead>Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {inventory.map((item: InventoryItem, index:number) => (
+            {inventory.map((item: InventoryItem, index: number) => (
               <TableRow key={`${item.id}-${index}`}>
+                <TableCell>
+                  {item.image !== "N/A" && <img src={item.image} alt={item.item} />}
+                  
+                </TableCell>
                 <TableCell>{item.item}</TableCell>
                 <TableCell>${item.cost}</TableCell>
                 <TableCell>
@@ -124,7 +127,7 @@ const ProductInventoryComponent = ({
                       onClick={() => {
                         toast({
                           title: `${item.item} has been added to your cart!`,
-                          wrapperStyle: "bg-gradient-experimentation text-white font-sohne"
+                          wrapperStyle: "bg-gradient-experimentation text-black text-3xl font-bold font-sohne"
                         });
                         addToCart(item);
                       }}
@@ -139,9 +142,6 @@ const ProductInventoryComponent = ({
         </Table>
 
         <SheetFooter>
-          {/* <SheetClose asChild>
-            <Button type="submit">Save changes</Button>
-          </SheetClose> */}
         </SheetFooter>
       </SheetContent>
     </Sheet>

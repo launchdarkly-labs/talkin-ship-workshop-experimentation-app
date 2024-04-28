@@ -24,7 +24,8 @@ interface NavBarProps {
   cart: InventoryItem[];
   personas: Persona[];
   setCart: React.Dispatch<React.SetStateAction<InventoryItem[]>>;
-
+  variant: string;
+  handleLogout: () => void;
 }
 
 interface Persona {
@@ -36,7 +37,7 @@ interface Persona {
 }
 
 const NavBar = React.forwardRef<any, NavBarProps>(
-  ({ cart, setCart, className, handleLogout, ...props }, ref) => {
+  ({ cart, setCart, className, variant, handleLogout, ...props }, ref) => {
     const { isLoggedIn, setIsLoggedIn, loginUser, user } = useContext(LoginContext);
 
     let navChild, navLogo, navLinkMobileDropdown, navLinksGroup;

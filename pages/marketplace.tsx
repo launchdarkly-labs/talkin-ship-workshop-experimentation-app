@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import NavBar from "@/components/ui/navbar";
 import { MacroCenter } from "@/components/ui/marketcomponents/stores/MacroCenter";
-import { VRgalaxy } from "@/components/ui/marketcomponents/stores/vrgalaxy";
+import { VRGalaxy } from "@/components/ui/marketcomponents/stores/vrgalaxy";
 import { TheBoominBox } from "@/components/ui/marketcomponents/stores/TheBoominBox";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import { AnimatePresence } from "framer-motion";
@@ -108,7 +108,7 @@ export default function Marketplace() {
             transition={{ duration: 0.5 }}
             className=""
           >
-            <NavBar cart={cart} setCart={setCart} variant={"market"} handleLogout={handleLogout} />
+            <NavBar cart={cart} setCart={setCart} variant={"market"} handleLogout={handleLogout} personas={[]} />
             <main className={`flex h-full bg-ldblack pb-20 text-white flex-col font-roboto`}>
               <header className="relative h-2/3 py-28 bg-market-header grid items-center justify-center">
                 <img src="elipse.png" className="absolute right-0 top-0" />
@@ -171,9 +171,7 @@ export default function Marketplace() {
                     {/* Individual callouts can be found components/ui/marketcomponents/stores */}
                     <div className="flex flex-col lg:flex-row gap-20 justify-between items-center">
                       <div className="prodcard">
-                        <VRgalaxy
-                          storeHeaders={storeHeaders}
-                          headerLabel={headerLabel}
+                        <VRGalaxy
                           addToCart={addToCart}
                           open={openVRGalaxy}
                           setOpen={setOpenVRGalaxy}
