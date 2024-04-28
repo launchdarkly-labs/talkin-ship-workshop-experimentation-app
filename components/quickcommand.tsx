@@ -38,29 +38,6 @@ export function QuickCommandDialog({ children }) {
         return () => document.removeEventListener("keydown", down)
     }, [])
 
-    const resetFeatureFlags = async () => {
-        toast({
-            title: "Resetting",
-            description:
-                "Currently resetting all LaunchDarkly flags for this environment. Give us 30 seconds.",
-        });
-
-        setTimer(30); // Start the timer at 30 seconds
-        const intervalId = setInterval(() => {
-            setTimer((prevTimer) => {
-                if (prevTimer <= 1) {
-                    clearInterval(intervalId); // Clear interval when timer reaches 0
-                    return 0;
-                }
-                return prevTimer - 1;
-            });
-        }, 1000);
-
-        await fetch("/api/ldreset");
-        location.reload();
-        location.push('/');
-    }
-
     return (
         <>
             {children}
@@ -69,14 +46,6 @@ export function QuickCommandDialog({ children }) {
                 <CommandList>
                     <CommandEmpty>No results found.</CommandEmpty>
                     <CommandGroup heading="Actions">
-                        <CommandItem >
-                            <RotateCcw className="mr-2 h-4 w-4" />
-                            {timer > 0 ? (
-                                <p>Resetting in {timer}</p>
-                            ) : (
-                                <div onClick={resetFeatureFlags}>Reset Feature Flags</div>
-                            )}
-                        </CommandItem>
                         <CommandItem>
                             <FlaskConical className="mr-2 h-4 w-4" />
                             <ExperimentGenerator />
