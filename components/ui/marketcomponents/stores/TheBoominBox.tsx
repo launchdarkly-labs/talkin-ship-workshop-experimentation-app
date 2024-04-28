@@ -65,7 +65,7 @@ export function TheBoominBox({
         </div>
       </SheetTrigger>
 
-      <SheetContent className="w-3/4 lg:w-1/2" side="right">
+      <SheetContent className="w-full lg:w-1/2 overflow-auto" side="right">
         <SheetHeader>
           <SheetTitle className="font-sohne text-2xl">
             The Boomin' Box
@@ -95,7 +95,7 @@ export function TheBoominBox({
                       className="rounded-none bg-blue-600 font-sohne"
                       onClick={() => addToCart(item)}
                     >
-                      Buy Now
+                      Add to Cart
                     </Button>
                   </div>
                 </TableCell>

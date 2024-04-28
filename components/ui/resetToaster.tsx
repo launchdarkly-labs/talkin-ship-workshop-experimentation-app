@@ -13,7 +13,7 @@ export function ResetToaster() {
 
   return (
     <ToastProvider>
-      {toasts.map(function ({ id, title, description, action, ...props }) {
+      {/* {toasts.map(function ({ id, title, description, action, ...props }) {
         return (
           <Toast className="bg-red-700" key={id} {...props}>
             <div className="grid  text-white">
@@ -26,7 +26,7 @@ export function ResetToaster() {
             <ToastClose />
           </Toast>
         )
-      })}
+      })} */}
       <ToastViewport />
     </ToastProvider>
   )

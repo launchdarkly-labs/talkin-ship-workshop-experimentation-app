@@ -28,11 +28,13 @@ import {
 } from "@/components/ui/table";
 import { useEffect, useState } from "react";
 import { useLDClient } from "launchdarkly-react-client-sdk";
+import { toast } from "../../use-toast";
 
 interface InventoryItem {
   id: string | number;
   item: string;
   cost: number;
+  image: string;
 }
 
 // @ts-nocheck
@@ -53,6 +55,15 @@ export function VRgalaxy({
   const router = useRouter();
 
   const [inventory, setInventory] = useState([]);
+
+  const addingToCart = (item: InventoryItem) => {
+    addToCart(item)
+
+    toast({
+      title: `${item.item} has been added to your cart!`,
+      wrapperStyle: "bg-gradient-experimentation text-black text-2xl font-sohne"
+    });
+  }
 
   useEffect(() => {
     fetch("/api/storeInventory?storename=vrgalaxy")
@@ -83,7 +94,7 @@ export function VRgalaxy({
                 damping: 20,
                 duration: 1.5,
               }}
-              className="flex justify-center absolute top-[10px] right-[20px] z-10 bg-[#EBFF38] px-4 pt-2 pb-[2rem] h-auto marketplace-item-banner-cutout !shadow-xl !shadow-[#3DD6F5]"
+              className="flex justify-center absolute top-[10px] right-[20px] z-10 bg-[#EBFF38] px-4 pt-2 pb-[2rem] h-auto marketplace-item-banner-cutout"
             >
               <p className="flex font-sohne uppercase text-xs text-black text-center flex-col justify-around mb-1.5 w-full">
                 {headerLabel
@@ -98,18 +109,17 @@ export function VRgalaxy({
         </div>
       </SheetTrigger>
 
-      <SheetContent className="w-3/4 lg:w-1/2" side="right">
+      <SheetContent className="w-full lg:w-1/2 overflow-auto" side="right">
         <SheetHeader>
           <SheetTitle className="font-sohne text-2xl">Welcome to VR Galaxy</SheetTitle>
 
-          <SheetDescription className="font-sohne">
-            Your home for todays VR equipment!
-          </SheetDescription>
+
         </SheetHeader>
         <Table>
           <TableCaption>VR Galaxy Inventory</TableCaption>
           <TableHeader>
             <TableRow>
+              <TableHead>Image</TableHead>
               <TableHead>Item</TableHead>
               <TableHead>Price</TableHead>
               <TableHead>Action</TableHead>
@@ -118,15 +128,18 @@ export function VRgalaxy({
           <TableBody>
             {inventory.map((item: InventoryItem) => (
               <TableRow key={item.id}>
+                <TableCell>
+                  <img src={`${item.image}`} alt={item.item} />
+                </TableCell>
                 <TableCell>{item.item}</TableCell>
                 <TableCell>{item.cost}</TableCell>
                 <TableCell>
                   <div>
                     <Button
-                      className="store rounded-none bg-blue-600 font-sohne"
-                      onClick={() => addToCart(item)}
+                      className="store rounded-none bg-blue-600 h-auto w-auto font-sohne"
+                      onClick={() => addingToCart(item)}
                     >
-                      Buy Now
+                      Add to Cart
                     </Button>
                   </div>
                 </TableCell>
@@ -135,9 +148,6 @@ export function VRgalaxy({
           </TableBody>
         </Table>
         <SheetFooter>
-          {/* <SheetClose asChild>
-            <Button type="submit">Save changes</Button>
-          </SheetClose> */}
         </SheetFooter>
       </SheetContent>
     </Sheet>

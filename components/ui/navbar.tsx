@@ -18,6 +18,7 @@ import {
 import QRCodeImage from "./QRCodeImage";
 import { PersonaContext } from "../personacontext";
 import { QuickLoginDialog } from "../quicklogindialog";
+import { LoginComponent } from "./logincomponent";
 
 interface NavBarProps {
   cart: InventoryItem[];
@@ -36,7 +37,8 @@ interface Persona {
 
 const NavBar = React.forwardRef<any, NavBarProps>(
   ({ cart, setCart, className, handleLogout, ...props }, ref) => {
-    const { isLoggedIn, user } = useContext(LoginContext);
+    const { isLoggedIn, setIsLoggedIn, loginUser, user } = useContext(LoginContext);
+
     let navChild, navLogo, navLinkMobileDropdown, navLinksGroup;
     const navLinkStyling =
       "hidden sm:block pb-12 pt-1.5 bg-transparent mr-4 flex items-start text-sm font-sohnelight font-medium transition-colors bg-no-repeat bg-bottom";
@@ -49,59 +51,66 @@ const NavBar = React.forwardRef<any, NavBarProps>(
 
     navChild = (
       <>
-        {!isLoggedIn ? null : (
-          <>
-            <div className="flex space-x-3 sm:space-x-6 ml-auto sm:mr-4 items-center">
-              <StoreCart cart={cart} setCart={setCart} />             
+        <>
+          <div className="flex space-x-3 sm:space-x-6 ml-auto sm:mr-4 items-center">
+            <StoreCart cart={cart} setCart={setCart} />
 
-              <Popover>
-                <PopoverTrigger>
-                  <Avatar>
-                    <AvatarImage
-                      src={
-                        personas.find((persona) => persona.personaname === user)?.personaimage ||
-                        "ToggleAvatar.png"
-                      }
-                      className=""
-                    />
-                  </Avatar>
-                </PopoverTrigger>
-                <PopoverContent className="w-[300px] h-[440px]">
-                  <>
-                    <div className="mx-auto flex place-content-center w-full">
-                      <img
-                        src={
-                          personas.find((persona) => persona.personaname === user)?.personaimage ||
-                          "ToggleAvatar.png"
-                        }
-                        className="rounded-full h-48"
-                      />
-                    </div>
-                    <div className="mx-auto text-center">
-                    <p className="text-2xl font-normal text-black font-shone mt-4">
-                      Hi {chosenPersona?.personaname}
-                    </p>
-                  </div>
-                  <div className="mx-auto text-center">
-                    <p className="text-md uppercase font-normal tracking-widest text-[#939598] font-shone mt-0">
-                      PLATINUM MEMBER
-                    </p>
-                  </div>
-                    <div className="mx-auto text-center mt-4">
-                      <Button
-                        onClick={handleLogout}
-                        className="items-center hover:bg-marketgradient2 hover:text-white font-audimat my-2 w-full bg-marketgradient1 text-black text-xl rounded-none"
-                      >
-                        Logout
-                      </Button>
-                      <QuickLoginDialog personas={personas} />
-                    </div>
-                  </>
-                </PopoverContent>
-              </Popover>
-            </div>
-          </>
-        )}
+            <Popover>
+              <PopoverTrigger>
+                <Avatar>
+                  <AvatarImage
+                    src={
+                      personas.find((persona) => persona.personaname === user)?.personaimage ||
+                      "ToggleAvatar.png"
+                    }
+                    className=""
+                  />
+                </Avatar>
+              </PopoverTrigger>
+              <PopoverContent className="w-[300px] h-auto">
+                  {isLoggedIn ? (
+                    <>
+                   <div className="mx-auto flex place-content-center w-full">
+                     <img
+                       src={
+                         personas.find((persona) => persona.personaname === user)?.personaimage ||
+                         "ToggleAvatar.png"
+                       }
+                       className="rounded-full h-48"
+                     />
+                   </div>
+                   <div className="mx-auto text-center">
+                     <p className="text-2xl font-normal text-black font-shone mt-4">
+                       Hi {chosenPersona?.personaname}
+                     </p>
+                   </div>
+                   <div className="mx-auto text-center">
+                     <p className="text-md uppercase font-normal tracking-widest text-[#939598] font-shone mt-0">
+                       PLATINUM MEMBER
+                     </p>
+                   </div>
+                   <div className="mx-auto text-center mt-4">
+                     <Button
+                       onClick={handleLogout}
+                       className="items-center hover:bg-marketgradient2 hover:text-white font-audimat my-2 w-full bg-marketgradient1 text-black text-xl rounded-none"
+                     >
+                       Logout
+                     </Button>
+                     <QuickLoginDialog personas={personas} />
+                   </div>
+                   </>
+                  ) : (<LoginComponent
+                    isLoggedIn={isLoggedIn}
+                    setIsLoggedIn={setIsLoggedIn}
+                    loginUser={loginUser}
+                    name={name}
+                  />
+                  )
+                  }
+              </PopoverContent>
+            </Popover>
+          </div>
+        </>
       </>
     );
 
@@ -118,15 +127,15 @@ const NavBar = React.forwardRef<any, NavBarProps>(
 
     navLinkMobileDropdown = (
       <>
-        {isLoggedIn ? (
-          <>
-            <DropdownMenuItem href="/marketplace">All</DropdownMenuItem>
-            <DropdownMenuItem href="/bank">Account</DropdownMenuItem>
-            <DropdownMenuItem href="/bank">Buy Again</DropdownMenuItem>
-            <DropdownMenuItem href="/bank">Today's Deals</DropdownMenuItem>
-            <DropdownMenuItem href="/bank">Sale</DropdownMenuItem>
-          </>
-        ) : null}
+
+        <>
+          <DropdownMenuItem href="/marketplace">All</DropdownMenuItem>
+          <DropdownMenuItem href="/bank">Account</DropdownMenuItem>
+          <DropdownMenuItem href="/bank">Buy Again</DropdownMenuItem>
+          <DropdownMenuItem href="/bank">Today's Deals</DropdownMenuItem>
+          <DropdownMenuItem href="/bank">Sale</DropdownMenuItem>
+        </>
+
 
         <div className="flex justify-between">
           <DropdownMenuItem>
@@ -187,9 +196,7 @@ const NavBar = React.forwardRef<any, NavBarProps>(
             <DropdownMenuContent>{navLinkMobileDropdown}</DropdownMenuContent>
           </DropdownMenuPortal>
         </DropdownMenu>
-        {isLoggedIn ? (
-          <div className="hidden lg:flex sm:gap-x-2 lg:gap-x-6">{navLinksGroup}</div>
-        ) : null}
+        <div className="hidden lg:flex sm:gap-x-2 lg:gap-x-6">{navLinksGroup}</div>
         {navChild}
       </nav>
     );

@@ -55,6 +55,7 @@ export function QuickLoginDialog({ personas }: QuickLoginDialogProps) {
                         alt={persona.personaname}
                       />
                       <p className="text-xs text-center mt-2">{persona.personaname}</p>
+                      <p className="text-xs text-center mt-2">{persona.personatype}</p>
                     </div>
                   ))}
               </div>

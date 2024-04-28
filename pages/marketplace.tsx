@@ -101,8 +101,7 @@ export default function Marketplace() {
     <>
       <Toaster />
       <AnimatePresence mode="wait">
-        {!isLoggedIn ? (
-          <LoginHomePage variant="market" name="Galaxy Marketplace" />) : (
+        (
             <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

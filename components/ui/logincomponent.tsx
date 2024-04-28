@@ -157,7 +157,7 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: L
                   <img src="loading-spinner.gif"></img>
                 </div>
               ) : (
-                <div className="overflow-y-auto h-64">
+                <div className="overflow-y-auto h-auto">
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 justify-items-center mb-4 pt-6">
                     {personas.map((item: Persona, index) => (
                       <div className="flex flex-col items-center" key={index}>
@@ -246,17 +246,6 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: L
             </DialogHeader>
 
             <DialogFooter>
-              <div className="flex w-full">
-                <Button onClick={toggleAddUserDropdown} className={`flex-grow  w-11/12 h-full font-audimat rounded-none text-xl ${marketButtonColorClass}`}>
-                  Add New User
-                </Button>
-
-                <Button onClick={handleDeleteAllPersonas} className={`flex-grow  ml-1 w-1/8 font-audimat rounded-none text-lg h-full ${marketButtonColorClass}`}>
-                  &#x21bb;
-                </Button>
-              </div>
-
-
             </DialogFooter>
           </DialogContent>
         </Dialog>
