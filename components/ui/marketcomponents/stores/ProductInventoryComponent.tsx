@@ -67,7 +67,7 @@ const ProductInventoryComponent = ({
           isVisibleStoreHeaders ? storeOpened() : null;
         }}
       >
-        <div className="relative flex items-center justify-center ">
+        <div className="relative flex items-center justify-center">
           {isVisibleStoreHeaders && (
             <motion.div
               initial={{ scale: 0, x: "-100%" }}
@@ -95,7 +95,7 @@ const ProductInventoryComponent = ({
         </div>
       </SheetTrigger>
 
-      <SheetContent className="w-3/4 lg:w-1/2" side="right">
+      <SheetContent className="w-full lg:w-1/2 overflow-auto" side="right">
         <SheetHeader>
           <SheetTitle className="font-sohne text-2xl  bg-gradient-experimentation text-transparent bg-clip-text">
             {sheetTitle}
@@ -123,7 +123,7 @@ const ProductInventoryComponent = ({
                 <TableCell>
                   <div>
                     <Button
-                      className="rounded-none bg-gradient-experimentation font-sohne hover:brightness-[120%]"
+                      className="rounded-none bg-gradient-experimentation font-sohne hover:brightness-[120%] h-auto"
                       onClick={() => {
                         toast({
                           title: `${item.item} has been added to your cart!`,
