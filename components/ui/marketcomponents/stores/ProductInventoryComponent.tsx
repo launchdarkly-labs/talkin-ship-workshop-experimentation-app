@@ -127,7 +127,7 @@ const ProductInventoryComponent = ({
                       onClick={() => {
                         toast({
                           title: `${item.item} has been added to your cart!`,
-                          wrapperStyle: "bg-gradient-experimentation text-black text-3xl font-bold font-sohne"
+                          wrapperStyle: "bg-gradient-experimentation text-white !text-medium font-bold font-sohne"
                         });
                         addToCart(item);
                       }}
