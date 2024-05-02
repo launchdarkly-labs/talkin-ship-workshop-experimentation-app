@@ -68,7 +68,7 @@ const NavBar = React.forwardRef<any, NavBarProps>(
                   />
                 </Avatar>
               </PopoverTrigger>
-              <PopoverContent className="w-[300px] h-auto">
+              <PopoverContent className={`w-[300px] h-auto ${!isLoggedIn ? "p-0" : ""}`}>
                   {isLoggedIn ? (
                     <>
                    <div className="mx-auto flex place-content-center w-full">

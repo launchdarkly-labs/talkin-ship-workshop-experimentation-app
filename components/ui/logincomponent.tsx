@@ -1,8 +1,8 @@
 //@ts-nocheck
-import * as React from "react"
-import { useRef, useEffect, useContext } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import * as React from "react";
+import { useRef, useEffect, useContext } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import {
   Dialog,
@@ -11,23 +11,30 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 import { PersonaContext } from "../personacontext";
+import marketplaceVerticalLogo from "@/public/marketplace/galaxy_marketplace_logo_vertical.svg";
 
 interface LoginComponentProps {
   isLoggedIn: boolean;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-  loginUser: any
+  loginUser: any;
   name: string;
 }
 
-export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: LoginComponentProps) {
+export function LoginComponent({
+  isLoggedIn,
+  setIsLoggedIn,
+  loginUser,
+  name,
+}: LoginComponentProps) {
   const inputRef = useRef();
   const [activeElement, setActiveElement] = useState(null);
-  const [defaultEmail, setDefaultEmail] = useState('jenn@launchmail.io');
-  const marketButtonColorClass = "bg-gradient-to-r from-marketblue text-black to-marketgreen text-black";
+  const [defaultEmail, setDefaultEmail] = useState("jenn@launchmail.io");
+  const marketButtonColorClass =
+    "bg-gradient-to-r from-marketblue text-black to-marketgreen text-black";
 
-  const [newPersona, setNewPersona] = useState({ name: '', type: '', image: '', email: '' });
+  const [newPersona, setNewPersona] = useState({ name: "", type: "", image: "", email: "" });
   const { personas, addPersona, deleteAllPersonas, getPersonas } = useContext(PersonaContext);
   const [isAddUserDropdownOpen, setIsAddUserDropdownOpen] = useState(false);
   const [submitError, setSubmitError] = useState(null);
@@ -42,9 +49,9 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: L
   }, [isLoading]);
 
   const handleSubmitNewPersona = () => {
-    const emailExists = personas.some(persona => persona.personaEmail === newPersona.email);
+    const emailExists = personas.some((persona) => persona.personaEmail === newPersona.email);
     if (emailExists) {
-      setSubmitError('A persona with this email already exists.');
+      setSubmitError("A persona with this email already exists.");
       return;
     }
     setIsLoading(true);
@@ -54,10 +61,10 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: L
         setIsLoading(false);
         getPersonas();
       })
-      .catch(error => {
-        setSubmitError('Failed to create new persona. Please try again.');
+      .catch((error) => {
+        setSubmitError("Failed to create new persona. Please try again.");
         setIsLoading(false);
-      })
+      });
   };
 
   const showBackButton = () => {
@@ -65,34 +72,31 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: L
     setSubmitError(null);
   };
 
-
   function handleLogin(e) {
     setIsLoggedIn(true);
     let email;
     let name;
-    const activePersona = personas.find(p => p.personaname === activeElement);
+    const activePersona = personas.find((p) => p.personaname === activeElement);
     if (activePersona) {
       email = activePersona.personaemail;
       name = activePersona.personaname;
-    }
-    else {
+    } else {
       // email = 'jenn@launchmail.io';
       // name = 'Jenn';
-    email = defaultEmail;
-    name = email.split('@')[0];
-    name = name.charAt(0).toUpperCase() + name.slice(1);
+      email = defaultEmail;
+      name = email.split("@")[0];
+      name = name.charAt(0).toUpperCase() + name.slice(1);
     }
     loginUser(name, email);
-  };
+  }
 
   const handleDeleteAllPersonas = () => {
     setIsLoading(true);
-    deleteAllPersonas()
-      .then(() => {
-        getPersonas();
-        setIsLoading(false);
-      })
-  }
+    deleteAllPersonas().then(() => {
+      getPersonas();
+      setIsLoading(false);
+    });
+  };
 
   const handleSetActive = (personaname, personaemail) => {
     setActiveElement(personaname);
@@ -105,7 +109,6 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: L
     }
   }, [activeElement]);
 
- 
   const imageSrc = "/market.png";
 
   const toggleAddUserDropdown = () => {
@@ -113,19 +116,11 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: L
   };
 
   return (
-    <div className="w-full  bg-white font-audimat shadow-xl mx-auto">
-
+    <div className="w-full  bg-white font-audimat shadow-xl mx-auto text-black px-4 rounded-lg">
       <div className="flex flex-col justify-center mx-auto text-center">
-        <img
-          src={imageSrc}
-          width={64}
-          className="pt-10 mx-auto pb-4"
-        />
-        <p className="text-3xl sm:text-4xl font-sohnelight pb-12 3xl:pb-24 !font-thin">
-          <span className="!font-extrabold">{name}</span>
-        </p>
+        <img src={marketplaceVerticalLogo.src} className="pt-10 mx-auto pb-4" />
       </div>
-      <div className="w-full px-8">
+      <div className="w-full ">
         <div>
           <Input
             placeholder="Email"
@@ -138,19 +133,29 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: L
 
         <Button
           onClick={handleLogin}
-          className={`mb-4 w-full h-full text-xl mx-auto font-sohne rounded-none hover:bg-marketgradient2 hover:text-white bg-marketgradient1 text-black`}>
+          className={`mb-4 w-full h-full text-xl mx-auto font-sohne rounded-none hover:bg-marketgradient2 hover:text-white bg-marketgradient1 text-black`}
+        >
           Login with SSO
         </Button>
 
-        <Dialog onDismiss={() => { setIsAddUserDropdownOpen(false) }} className="z-10">
-          <DialogTrigger className={`mb-4 p-2 w-full h-full mx-auto font-sohne rounded-none text-xl border-2 bg hover:text-white hover:bg-marketgradient2` } style={{ borderImage: 'linear-gradient(225deg, #EBFF38 -7.08%, #3DD6F5 90.68%)', borderImageSlice: '2' }}>
+        <Dialog
+          onDismiss={() => {
+            setIsAddUserDropdownOpen(false);
+          }}
+          className="z-10"
+        >
+          <DialogTrigger
+            className={`mb-4 p-2 w-full h-full mx-auto font-sohne rounded-none text-xl border-2 bg hover:text-white hover:bg-marketgradient2`}
+            style={{
+              borderImage: "linear-gradient(225deg, #EBFF38 -7.08%, #3DD6F5 90.68%)",
+              borderImageSlice: "2",
+            }}
+          >
             Switch SSO User
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle>Switch SSO User</DialogTitle>
-
-
 
               {isLoading ? (
                 <div className="flex justify-center items-center h-64">
@@ -163,7 +168,9 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: L
                       <div className="flex flex-col items-center" key={index}>
                         <img
                           src={item.personaimage}
-                          className={`w-24 rounded-full mb-4 ${activeElement === item.personaname ? 'border-4 border-black' : ''}`}
+                          className={`w-24 rounded-full mb-4 ${
+                            activeElement === item.personaname ? "border-4 border-black" : ""
+                          }`}
                           onClick={() => handleSetActive(item.personaname, item.personaemail)}
                           alt={item.personaname}
                         />
@@ -178,7 +185,10 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: L
 
                     {isAddUserDropdownOpen && (
                       <div className="absolute z-100 left-0 top-0 bottom-0 pt-8 w-full bg-white shadow-lg">
-                        <Button onClick={showBackButton} className={`absolute top-3 text-xs  mx-auto font-audimat left-4 h-5 rounded-full  ${marketButtonColorClass}`}>
+                        <Button
+                          onClick={showBackButton}
+                          className={`absolute top-3 text-xs  mx-auto font-audimat left-4 h-5 rounded-full  ${marketButtonColorClass}`}
+                        >
                           &larr;
                         </Button>
                         <div className="p-4">
@@ -217,19 +227,37 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: L
                           </div>
                           <div className="mb-0 overflow-x-auto rounded">
                             <div className="flex space-x-4 p-2">
-                              {['persona1.png', 'persona2.png', 'persona3.png', 'persona4.png', 'persona5.png'].map((imageName, index) => (
+                              {[
+                                "persona1.png",
+                                "persona2.png",
+                                "persona3.png",
+                                "persona4.png",
+                                "persona5.png",
+                              ].map((imageName, index) => (
                                 <img
                                   key={imageName}
                                   src={`/personas/${imageName}`}
                                   alt={imageName}
-                                  className={`w-24 h-24 rounded-full cursor-pointer ${newPersona.image === `/personas/${imageName}` ? 'border-4 border-blue-500' : ''}`}
-                                  onClick={() => setNewPersona({ ...newPersona, image: `/personas/${imageName}` })}
+                                  className={`w-24 h-24 rounded-full cursor-pointer ${
+                                    newPersona.image === `/personas/${imageName}`
+                                      ? "border-4 border-blue-500"
+                                      : ""
+                                  }`}
+                                  onClick={() =>
+                                    setNewPersona({
+                                      ...newPersona,
+                                      image: `/personas/${imageName}`,
+                                    })
+                                  }
                                   key={index}
                                 />
                               ))}
                             </div>
                           </div>
-                          <Button onClick={handleSubmitNewPersona} className={`mb-2 w-full h-full mx-auto font-audimat mt-2 rounded-none text-xl ${marketButtonColorClass}`}>
+                          <Button
+                            onClick={handleSubmitNewPersona}
+                            className={`mb-2 w-full h-full mx-auto font-audimat mt-2 rounded-none text-xl ${marketButtonColorClass}`}
+                          >
                             Submit
                           </Button>
 
@@ -237,7 +265,6 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: L
                             <p className="text-red-500 text-sm z-100">{submitError}</p>
                           )}
                         </div>
-
                       </div>
                     )}
                   </div>
@@ -245,14 +272,11 @@ export function LoginComponent({ isLoggedIn, setIsLoggedIn, loginUser, name }: L
               )}
             </DialogHeader>
 
-            <DialogFooter>
-            </DialogFooter>
+            <DialogFooter></DialogFooter>
           </DialogContent>
         </Dialog>
-
-
       </div>
-      <div className="grid  sm:flex-row  justify-between px-8 pb-8">
+      <div className="grid  sm:flex-row  justify-between pb-8">
         <div className="pb-3">
           <p>Forgot Password?</p>
         </div>
