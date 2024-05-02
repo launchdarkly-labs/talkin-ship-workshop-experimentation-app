@@ -40,10 +40,9 @@ module.exports = {
         "gradient-experimentation":
           "linear-gradient(222deg,#c0d600 -2.68%,#05b0d2 92.81%);",
         "gradient-mobile": "linear-gradient(65deg,#ff386b 3.6%,#ffaf38 98.81%)",
-        "market-header":
+        "gradient-experimentation-black":
           "linear-gradient(108.59deg, #212121 2.18%, #000000 75.85%)",
-        "marketgradient1": "linear-gradient(225deg, #EBFF38 -7.08%, #3DD6F5 90.68%)",
-        "marketgradient2":"linear-gradient(200.65deg, #58595B -25.37%, #212121 75.5%)",
+        "gradient-experimentation-grey":"linear-gradient(200.65deg, #58595B -25.37%, #212121 75.5%)",
         
         card4bottom:
           "linear-gradient(39.47deg, #A34FDE -17.19%, #FF386B 148.9%)",

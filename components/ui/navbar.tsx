@@ -93,7 +93,7 @@ const NavBar = React.forwardRef<any, NavBarProps>(
                    <div className="mx-auto text-center mt-4">
                      <Button
                        onClick={handleLogout}
-                       className="items-center hover:bg-marketgradient2 hover:text-white font-audimat my-2 w-full bg-marketgradient1 text-black text-xl rounded-none"
+                       className="items-center hover:bg-gradient-experimentation-grey hover:text-white font-audimat my-2 w-full bg-gradient-experimentation text-black text-xl rounded-none"
                      >
                        Logout
                      </Button>

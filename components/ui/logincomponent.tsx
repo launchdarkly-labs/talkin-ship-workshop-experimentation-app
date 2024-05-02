@@ -133,7 +133,7 @@ export function LoginComponent({
 
         <Button
           onClick={handleLogin}
-          className={`mb-4 w-full h-full text-xl mx-auto font-sohne rounded-none hover:bg-marketgradient2 hover:text-white bg-marketgradient1 text-black`}
+          className={`mb-4 w-full h-full text-xl mx-auto font-sohne rounded-none hover:bg-gradient-experimentation-grey hover:text-white bg-gradient-experimentation text-white`}
         >
           Login with SSO
         </Button>
@@ -145,7 +145,7 @@ export function LoginComponent({
           className="z-10"
         >
           <DialogTrigger
-            className={`mb-4 p-2 w-full h-full mx-auto font-sohne rounded-none text-xl border-2 bg hover:text-white hover:bg-marketgradient2`}
+            className={`mb-4 p-2 w-full h-full mx-auto font-sohne rounded-none text-xl border-2 bg hover:text-white hover:bg-gradient-experimentation-grey`}
             style={{
               borderImage: "linear-gradient(225deg, #EBFF38 -7.08%, #3DD6F5 90.68%)",
               borderImageSlice: "2",

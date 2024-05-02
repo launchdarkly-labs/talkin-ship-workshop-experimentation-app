@@ -50,7 +50,7 @@ export function StoreCart({ cart, setCart }: { cart: any; setCart: any }) {
   const checkOut = () => {
     toast({
       title: `Checkout is successful! Enjoy your purchase!`,
-      wrapperStyle: "bg-marketgradient1 text-black font-sohne text-3xl"
+      wrapperStyle: "bg-gradient-experimentation text-white font-sohne text-base"
     });
 
     setCart([]);
@@ -66,8 +66,8 @@ export function StoreCart({ cart, setCart }: { cart: any; setCart: any }) {
       <SheetTrigger onClick={() => cartClick()} asChild>
         <div className="relative cursor-pointer">
           <ShoppingCart className="cart" color={"white"} />
-          <div className="bg-marketgradient1 w-3 h-3 sm:w-[1rem] sm:h-[1rem] flex justify-center align-center items-center  rounded-[100%] absolute top-[-5px] right-[-10px]">
-            <span className="text-black mt-[.15rem] sm:mt-1 absolute text-xs sm:text-sm ">
+          <div className="bg-gradient-experimentation w-3 h-3 sm:w-[1rem] sm:h-[1rem] flex justify-center align-center items-center  rounded-[100%] absolute top-[-5px] right-[-10px]">
+            <span className="text-white mt-[.15rem] sm:mt-1 absolute text-xs sm:text-sm ">
               {cartNumOfItems}
             </span>
           </div>

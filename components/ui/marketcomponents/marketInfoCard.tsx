@@ -13,11 +13,11 @@ const MarketInfoCard = ({
 }) => {
   return (
     <div className="flex w-full h-full sm:w-[375px] sm:h-[375px] border-0 flex-col grid-rows-2
-    bg-market-header text-white shadow-2xl z-0 !rounded-none relative">
+    bg-gradient-experimentation-black text-white shadow-2xl z-0 !rounded-none relative">
       <div className="!space-y-0 !p-0">
       <img src={imgSrc} className="w-full h-60 object-fill ov" />
             </div>
-      <div className="p-8 flex flex-col gap-y-2 bg-market-header h-full">
+      <div className="p-8 flex flex-col gap-y-2 bg-gradient-experimentation-black h-full">
         <div className="font-sohne text-white">
           <p className=" text-2xl">{headerTitleText}</p>
         </div>
