@@ -116,9 +116,9 @@ export function LoginComponent({
   };
 
   return (
-    <div className="w-full  bg-white font-audimat shadow-xl mx-auto text-black px-4 rounded-lg">
+    <div className="w-full  bg-white font-audimat shadow-xl mx-auto text-black p-4 sm:p-8 rounded-lg">
       <div className="flex flex-col justify-center mx-auto text-center">
-        <img src={marketplaceVerticalLogo.src} className="pt-10 mx-auto pb-4" />
+        <img src={marketplaceVerticalLogo.src} className=" mx-auto pb-4" />
       </div>
       <div className="w-full ">
         <div>
@@ -276,12 +276,12 @@ export function LoginComponent({
           </DialogContent>
         </Dialog>
       </div>
-      <div className="grid  sm:flex-row  justify-between pb-8">
+      <div className="flex flex-col items-start sm:items-baseline font-sohnelight font-extralight sm:flex-row text-xs">
         <div className="pb-3">
           <p>Forgot Password?</p>
         </div>
         <div>
-          <p>
+          <p className="text-right">
             Don't have an account?{" "}
             <a href={window.location.href} className="text-blue-600 ml-2">
               Sign Up
