@@ -1,9 +1,9 @@
 tasks: 
 - name: Start Workshop
-  init: 
+  init: |
    touch .env 
-  echo \NEXT_PUBLIC_LD_CLIENT_SDK_KEY='"<enter your client side key>"'\ >> .env 
-  echo \LD_SDK_KEY='"<enter your server side key>"'\ >> .env 
+   echo \NEXT_PUBLIC_LD_CLIENT_SDK_KEY='"<enter your client side key>"'\ >> .env 
+   echo \LD_SDK_KEY='"<enter your server side key>"'\ >> .env 
    npm install
   command: npm run dev
 
