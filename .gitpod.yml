@@ -1,7 +1,9 @@
 tasks: 
 - name: Start Workshop
-  init: |
-   curl -o .env https://talkin-ship-workshop.s3.us-east-2.amazonaws.com/release.env
+  init: 
+   touch .env 
+  echo \NEXT_PUBLIC_LD_CLIENT_SDK_KEY='"<enter your client side key>"'\ >> .env 
+  echo \LD_SDK_KEY='"<enter your server side key>"'\ >> .env 
    npm install
   command: npm run dev
 
