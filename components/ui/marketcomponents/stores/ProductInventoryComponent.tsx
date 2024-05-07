@@ -115,7 +115,7 @@ const ProductInventoryComponent = ({
             {inventory.map((item: InventoryItem, index: number) => (
               <TableRow key={`${item.id}-${index}`}>
                 <TableCell>
-                  {item.image !== "N/A" && <img src={item.image} alt={item.item} />}
+                  {item.image !== "N/A" && <img src={item.image?.src} alt={item.item} />}
                   
                 </TableCell>
                 <TableCell>{item.item}</TableCell>

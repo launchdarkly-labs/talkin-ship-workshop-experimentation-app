@@ -84,7 +84,6 @@ export function LoginComponent({
     }
   }, [activeElement]);
 
-  const imageSrc = "/market.png";
 
   const toggleAddUserDropdown = () => {
     setIsAddUserDropdownOpen(!isAddUserDropdownOpen);
