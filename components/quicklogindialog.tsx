@@ -43,9 +43,9 @@ export function QuickLoginDialog({ personas }: QuickLoginDialogProps) {
               <div className="flex overflow-x-auto space-x-4 ">
                 {personas
                   .filter((persona) => persona.personaname !== user)
-                  .map((persona) => (
+                  .map((persona, index) => (
                     <div
-                      key={persona.id}
+                      key={index}
                       className="flex flex-col items-center mr-2 cursor-pointer flex-shrink-0"
                     >
                       <img
