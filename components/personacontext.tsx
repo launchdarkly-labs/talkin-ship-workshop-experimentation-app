@@ -1,5 +1,6 @@
 // PersonaContext.js
 import React, { createContext, useState, useEffect } from 'react';
+import womanPersonaImage from '@/public/woman.svg';
 
 export const PersonaContext = createContext(null);
 
@@ -23,7 +24,7 @@ export const PersonaProvider = ({ children }) => {
       {
         personaname: "Jenn",
         personatype: "Developer",
-        personaimage: "woman.png",
+        personaimage: "woman.svg",
         personaemail: "jenn@launchmail.io",
       },
     ];
