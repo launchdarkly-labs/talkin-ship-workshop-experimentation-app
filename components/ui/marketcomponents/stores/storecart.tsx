@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/table";
 import { useLDClient } from "launchdarkly-react-client-sdk";
 import { useToast } from "@/components/ui/use-toast";
+import galaxyMarketLogo from '@/public/market.png'
 
 interface InventoryItem {
   id: string | number;
@@ -95,7 +96,7 @@ export function StoreCart({ cart, setCart }: { cart: any; setCart: any }) {
               cart?.map((item: InventoryItem, index: number) => {
                 return (
                   <TableRow key={`${item.id}-${index}`}>
-                    <TableCell> <img src={`${item.image}`} alt={item.item} /></TableCell>
+                    <TableCell> <img src={`${item.image ? item.image?.src : galaxyMarketLogo.src}`} alt={item.item} className="h-10 w-10 sm:h-20 sm:w-20"  /></TableCell>
                     <TableCell className="">{item.item}</TableCell>
                     <TableCell className="">${item.cost}</TableCell>
                   </TableRow>

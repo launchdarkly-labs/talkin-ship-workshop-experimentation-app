@@ -89,14 +89,12 @@ export function VRGalaxy({
       "vendor": "vrgalaxy",
       "item": "Adjustable VR Headset Stand",
       "cost": "39.99",
-      "image": vrheadset
       },
       {
       "id": 10,
       "vendor": "vrgalaxy",
       "item": "Virtual Reality Experience Ticket - Underwater World",
       "cost": "14.99",
-      "image": vrheadset
       }
       ];
       setInventory(data);

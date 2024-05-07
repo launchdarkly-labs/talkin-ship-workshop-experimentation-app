@@ -23,6 +23,7 @@ import { motion } from "framer-motion";
 
 import { useLDClient } from "launchdarkly-react-client-sdk";
 import { useToast } from "@/components/ui/use-toast";
+import galaxyMarketLogo from '@/public/market.png'
 
 interface InventoryItem {
   id: string | number;
@@ -115,8 +116,7 @@ const ProductInventoryComponent = ({
             {inventory.map((item: InventoryItem, index: number) => (
               <TableRow key={`${item.id}-${index}`}>
                 <TableCell>
-                  {item.image !== "N/A" && <img src={item.image?.src} alt={item.item} />}
-                  
+                  {<img src={`${item.image ? item.image?.src : galaxyMarketLogo.src}`} alt={item.item} className="h-10 w-10 sm:h-20 sm:w-20" />}
                 </TableCell>
                 <TableCell>{item.item}</TableCell>
                 <TableCell>${item.cost}</TableCell>
