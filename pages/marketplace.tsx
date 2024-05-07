@@ -26,9 +26,13 @@ export default function Marketplace() {
   const { isLoggedIn, setIsLoggedIn, loginUser, logoutUser } =
     useContext(LoginContext);
 
+{/* Step 1 code block */}
+
   const LDClient = useLDClient();
   const flags = useFlags();
   const { storeAttentionCallout, storeHeaders } = useFlags();
+
+  {/* Step 1 code block */}
 
   interface InventoryItem {
     id: string | number;
