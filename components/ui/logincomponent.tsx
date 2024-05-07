@@ -34,8 +34,8 @@ export function LoginComponent({
   const marketButtonColorClass =
     "bg-gradient-to-r from-marketblue text-black to-marketgreen text-black";
 
-  const [newPersona, setNewPersona] = useState({ name: "", type: "", image: "", email: "" });
-  const { personas, addPersona, deleteAllPersonas, getPersonas } = useContext(PersonaContext);
+  const [newPersona, setNewPersona] = useState({ name: '', type: '', image: '', email: '' });
+  const { personas, getPersonas } = useContext(PersonaContext);
   const [isAddUserDropdownOpen, setIsAddUserDropdownOpen] = useState(false);
   const [submitError, setSubmitError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -48,24 +48,6 @@ export function LoginComponent({
     getPersonas();
   }, [isLoading]);
 
-  const handleSubmitNewPersona = () => {
-    const emailExists = personas.some((persona) => persona.personaEmail === newPersona.email);
-    if (emailExists) {
-      setSubmitError("A persona with this email already exists.");
-      return;
-    }
-    setIsLoading(true);
-    addPersona(newPersona)
-      .then(() => {
-        setIsAddUserDropdownOpen(false);
-        setIsLoading(false);
-        getPersonas();
-      })
-      .catch((error) => {
-        setSubmitError("Failed to create new persona. Please try again.");
-        setIsLoading(false);
-      });
-  };
 
   const showBackButton = () => {
     setIsAddUserDropdownOpen(false);
@@ -90,13 +72,6 @@ export function LoginComponent({
     loginUser(name, email);
   }
 
-  const handleDeleteAllPersonas = () => {
-    setIsLoading(true);
-    deleteAllPersonas().then(() => {
-      getPersonas();
-      setIsLoading(false);
-    });
-  };
 
   const handleSetActive = (personaname, personaemail) => {
     setActiveElement(personaname);
@@ -164,7 +139,7 @@ export function LoginComponent({
               ) : (
                 <div className="overflow-y-auto h-auto">
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 justify-items-center mb-4 pt-6">
-                    {personas.map((item: Persona, index) => (
+                    {personas.map((item: Persona, index: number) => (
                       <div className="flex flex-col items-center" key={index}>
                         <img
                           src={item.personaimage}
@@ -254,10 +229,7 @@ export function LoginComponent({
                               ))}
                             </div>
                           </div>
-                          <Button
-                            onClick={handleSubmitNewPersona}
-                            className={`mb-2 w-full h-full mx-auto font-audimat mt-2 rounded-none text-xl ${marketButtonColorClass}`}
-                          >
+                          <Button className={`mb-2 w-full h-full mx-auto font-audimat mt-2 rounded-none text-xl ${marketButtonColorClass}`}>
                             Submit
                           </Button>
 
@@ -272,7 +244,19 @@ export function LoginComponent({
               )}
             </DialogHeader>
 
-            <DialogFooter></DialogFooter>
+            <DialogFooter>
+              <div className="flex w-full">
+                <Button onClick={toggleAddUserDropdown} className={`flex-grow  w-11/12 h-full font-audimat rounded-none text-xl ${marketButtonColorClass}`}>
+                  Add New User
+                </Button>
+
+                <Button className={`flex-grow  ml-1 w-1/8 font-audimat rounded-none text-lg h-full ${marketButtonColorClass}`}>
+                  &#x21bb;
+                </Button>
+              </div>
+
+
+            </DialogFooter>
           </DialogContent>
         </Dialog>
       </div>

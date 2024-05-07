@@ -1,0 +1,14 @@
+tasks: 
+- name: Start Workshop
+  init: |
+   touch .env 
+   echo \NEXT_PUBLIC_LD_CLIENT_SDK_KEY='"<enter your client side key>"'\ >> .env 
+   echo \LD_SDK_KEY='"<enter your server side key>"'\ >> .env 
+   npm install
+  command: npm run dev
+
+ports: 
+  - port: 3001
+    onOpen: open-preview
+    name: Galaxy Marketplace
+    description: Galaxy Marketplace preview
