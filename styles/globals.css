@@ -191,6 +191,12 @@ font-weight: 500;
 line-height: normal;
 }
 
+.marketbordergradient {
+  border: 4px solid transparent;
+  border-image: linear-gradient(225deg, #EBFF38 -7.08%, #3DD6F5 90.68%) 1;
+  box-shadow: 0 0 0 4px transparent;
+}
+
 
 .summary-border::after {
   content: "";
@@ -220,4 +226,12 @@ line-height: normal;
   place-items: center;
   background: linear-gradient(to right, #3b82f6, #10b981); 
   color: black;
+}
+
+@layer utilities {
+
+  .marketplace-item-banner-cutout {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 90%, 0 100%);
+  }
+
 }

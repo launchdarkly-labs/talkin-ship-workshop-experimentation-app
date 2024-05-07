@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import NavBar from "@/components/ui/navbar";
 import { MacroCenter } from "@/components/ui/marketcomponents/stores/MacroCenter";
-import { VRgalaxy } from "@/components/ui/marketcomponents/stores/vrgalaxy";
+import { VRGalaxy } from "@/components/ui/marketcomponents/stores/vrgalaxy";
 import { TheBoominBox } from "@/components/ui/marketcomponents/stores/TheBoominBox";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import { AnimatePresence } from "framer-motion";
@@ -281,21 +281,20 @@ export default function Marketplace() {
     <>
       <Toaster />
       <AnimatePresence mode="wait">
-        {!isLoggedIn ? (
-          <LoginHomePage variant="market" name="Galaxy Marketplace" />) : (
+        (
             <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
             className=""
           >
-            <NavBar cart={cart} setCart={setCart} variant={"market"} handleLogout={handleLogout} />
+            <NavBar cart={cart} setCart={setCart} variant={"market"} handleLogout={handleLogout} personas={[]} />
             <main className={`flex h-full bg-ldblack pb-20 text-white flex-col font-roboto`}>
-              <header className="relative h-2/3 py-28 bg-market-header grid items-center justify-center">
+              <header className="relative h-2/3 py-28 bg-gradient-experimentation-black grid items-center justify-center">
                 <img src="elipse.png" className="absolute right-0 top-0" />
                 <img src="union.png" className="absolute left-0 bottom-0" />
                 <div className="flex flex-col text-center px-4 sm:mx-auto items-center ">
-                  <h1 className="flex justify-center items-center market-header marketplace text-7xl mx-auto pb-8 w-full lg:w-1/2 font-audimat">
+                  <h1 className="flex justify-center items-center marketplace text-7xl mx-auto pb-8 w-full lg:w-1/2 font-audimat">
                     A galaxy of stores at your fingertips
                   </h1>
                   <div className="w-full sm:w-3/4 lg:w-1/2">
@@ -310,22 +309,22 @@ export default function Marketplace() {
                     />
                   </div>
                   <div className="mt-4 sm:mt-6 gap-x-2 gap-y-4 sm:gap-y-0 grid grid-cols-3 sm:flex sm:grid-cols-0  ">
-                    <Badge className="text-lg border-2 border-gray-500 text-ldlightgray bg-market-header">
+                    <Badge className="text-lg border-2 bg-transparent border-gray-500 text-ldlightgray">
                       Accessories
                     </Badge>
-                    <Badge className="text-lg bg-market-header border-2 border-gray-500 text-ldlightgray">
+                    <Badge className="text-lg border-2 bg-transparent border-gray-500 text-ldlightgray">
                       Gifts for devs
                     </Badge>
-                    <Badge className="text-lg bg-market-header border-2 border-gray-500 text-ldlightgray">
+                    <Badge className="text-lg border-2 bg-transparent border-gray-500 text-ldlightgray">
                       Popular shops
                     </Badge>
-                    <Badge className="text-lg bg-market-header border-2 border-gray-500 text-ldlightgray">
+                    <Badge className="text-lg border-2 bg-transparent border-gray-500 text-ldlightgray">
                       Best sellers
                     </Badge>
-                    <Badge className="text-lg bg-market-header border-2 border-gray-500 text-ldlightgray">
+                    <Badge className="text-lg border-2 bg-transparent border-gray-500 text-ldlightgray">
                       Newest
                     </Badge>
-                    <Badge className="text-lg bg-market-header border-2 border-gray-500 text-ldlightgray">
+                    <Badge className="text-lg border-2 bg-transparent border-gray-500 text-ldlightgray">
                       Top deals
                     </Badge>
                   </div>
@@ -352,9 +351,7 @@ export default function Marketplace() {
                     {/* Individual callouts can be found components/ui/marketcomponents/stores */}
                     <div className="flex flex-col lg:flex-row gap-20 justify-between items-center">
                       <div className="prodcard">
-                        <VRgalaxy
-                          storeHeaders={storeHeaders}
-                          headerLabel={headerLabel}
+                        <VRGalaxy
                           addToCart={addToCart}
                           open={openVRGalaxy}
                           setOpen={setOpenVRGalaxy}
