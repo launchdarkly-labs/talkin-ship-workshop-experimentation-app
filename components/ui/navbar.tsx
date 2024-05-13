@@ -154,31 +154,31 @@ const NavBar = React.forwardRef<any, NavBarProps>(
       <>
         <button
           href="/marketplace"
-          className={`${navLinkStyling} ml-12 flex items-start text-white hover:text-white focus:text-airlinetext bg-gradient-to-r from-marketblue to-marketgreen bg-[length:100%_3px]`}
+          className={`${navLinkStyling} ml-12 flex items-start text-white hover:text-white focus:text-markettext bg-gradient-to-r from-marketblue to-marketgreen bg-[length:100%_3px]`}
         >
           All
         </button>
         <button
           href="/marketplace"
-          className={`${navLinkStyling} text-airlineinactive focus:text-airlinetext hover:text-white hover:bg-gradient-to-r from-marketblue to-marketgreen bg-[length:100%_3px]`}
+          className={`${navLinkStyling} text-marketinactive focus:text-markettext hover:text-white hover:bg-gradient-to-r from-marketblue to-marketgreen bg-[length:100%_3px]`}
         >
           Account
         </button>
         <button
           href="/marketplace"
-          className={`${navLinkStyling}  text-airlineinactive focus:text-airlinetext hover:text-white hover:bg-gradient-to-r from-marketblue to-marketgreen bg-[length:100%_3px]`}
+          className={`${navLinkStyling}  text-marketinactive focus:text-markettext hover:text-white hover:bg-gradient-to-r from-marketblue to-marketgreen bg-[length:100%_3px]`}
         >
           Buy Again
         </button>
         <button
           href="/marketplace"
-          className={`${navLinkStyling} text-airlineinactive focus:text-airlinetext hover:text-white hover:bg-gradient-to-r from-marketblue to-marketgreen bg-[length:100%_3px]`}
+          className={`${navLinkStyling} text-marketinactive focus:text-markettext hover:text-white hover:bg-gradient-to-r from-marketblue to-marketgreen bg-[length:100%_3px]`}
         >
           Today's Deals
         </button>
         <button
           href="/marketplace"
-          className={`${navLinkStyling} text-airlineinactive focus:text-airlinetext hover:text-white hover:bg-gradient-to-r from-marketblue to-marketgreen bg-[length:100%_3px]`}
+          className={`${navLinkStyling} text-marketinactive focus:text-markettext hover:text-white hover:bg-gradient-to-r from-marketblue to-marketgreen bg-[length:100%_3px]`}
         >
           Sale
         </button>

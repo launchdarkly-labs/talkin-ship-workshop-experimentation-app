@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { motion } from "framer-motion";
 import { useFlags, useLDClient } from "launchdarkly-react-client-sdk";
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,6 @@ import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import { AnimatePresence } from "framer-motion";
 import { Toaster } from "@/components/ui/toaster";
 import LoginContext from "@/utils/contexts/login";
-import LoginHomePage from "@/components/LoginHomePage";
 import { setCookie } from "cookies-next";
 
 
@@ -23,14 +22,13 @@ export default function Marketplace() {
   const [openVRGalaxy, setOpenVRGalaxy] = useState(false);
   const [openMacroCenter, setOpenMacroCenter] = useState(false);
   const [openBoominBox, setOpenBoominBox] = useState(false);
-  const { isLoggedIn, setIsLoggedIn, loginUser, logoutUser } =
+  const { isLoggedIn, logoutUser } =
     useContext(LoginContext);
 
 {/* Step 1 code block */}
 
   const LDClient = useLDClient();
-  const flags = useFlags();
-  const { storeAttentionCallout, storeHeaders } = useFlags();
+  const { storeAttentionCallout} = useFlags();
 
   {/* Step 1 code block */}
 

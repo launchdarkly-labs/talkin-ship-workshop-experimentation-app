@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
@@ -15,15 +14,15 @@ import { useRouter } from "next/router";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useLDClient } from "launchdarkly-react-client-sdk";
+import { useLDClient, useFlags } from "launchdarkly-react-client-sdk";
 import { useToast } from "@/components/ui/use-toast";
 import galaxyMarketLogo from '@/public/market.png'
+import SuggestedItems from '@/components/ui/marketcomponents/suggestedItems';
 
 interface InventoryItem {
   id: string | number;
@@ -35,6 +34,7 @@ export function StoreCart({ cart, setCart }: { cart: any; setCart: any }) {
   const router = useRouter();
 
   const LDClient = useLDClient();
+  const { cartSuggestedItems } = useFlags();
 
   const totalCost = (cart || []).reduce(
     (total: number, item: InventoryItem) => total + Number(item.cost),
@@ -58,8 +58,15 @@ export function StoreCart({ cart, setCart }: { cart: any; setCart: any }) {
     router.push("/marketplace");
   };
 
+  const continueShopping = () => {
+    LDClient?.track("upsell-tracking", LDClient.getContext());
+    
+    router.push("/marketplace");
+  };
+
   const checkOutTracking = () => {
     LDClient?.track("customer-checkout", LDClient.getContext(), 1);
+    LDClient?.track("in-cart-total-price", LDClient.getContext(), totalCost);
   };
 
   return (
@@ -96,7 +103,7 @@ export function StoreCart({ cart, setCart }: { cart: any; setCart: any }) {
               cart?.map((item: InventoryItem, index: number) => {
                 return (
                   <TableRow key={`${item.id}-${index}`}>
-                    <TableCell> <img src={`${item.image ? item.image?.src : galaxyMarketLogo.src}`} alt={item.item} className="h-10 w-10 sm:h-20 sm:w-20"  /></TableCell>
+                    <TableCell> <img src={`${item.image ? item.image?.src : galaxyMarketLogo.src}`} alt={item.item} className="h-10 w-10 sm:h-20 sm:w-20" /></TableCell>
                     <TableCell className="">{item.item}</TableCell>
                     <TableCell className="">${item.cost}</TableCell>
                   </TableRow>
@@ -112,6 +119,7 @@ export function StoreCart({ cart, setCart }: { cart: any; setCart: any }) {
         <hr className="my-4 border-t border-gray-200" />
 
         <SheetFooter>
+
           <div className="w-full px-4 ">
             <div className="w-full px-4 flex justify-between">
               <p className="pb-4 font-sohne">Total:</p>
@@ -124,9 +132,27 @@ export function StoreCart({ cart, setCart }: { cart: any; setCart: any }) {
               >
                 Checkout
               </Button>
+
             </SheetTrigger>
+            {cartSuggestedItems ? (
+              <SuggestedItems
+                cart={cart}
+                setCart={setCart}
+              />
+            ) : (
+              <SheetTrigger onClick={continueShopping} asChild>
+                <div className="text-center mt-4">
+                  <Button
+                    className="text-md  bg-gradient-experimentation hover:brightness-[120%] text-transparent bg-clip-text rounded-none"
+                  >
+                    Continue Shopping →
+                  </Button>
+                </div>
+              </SheetTrigger>
+            )}
           </div>
         </SheetFooter>
+
       </SheetContent>
     </Sheet>
   );

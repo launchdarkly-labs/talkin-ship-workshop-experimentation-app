@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import {
-    RotateCcw,
+    Beaker,
     FlaskConical,
 } from "lucide-react"
 import { useRouter } from "next/router";
@@ -14,11 +14,10 @@ import {
     CommandInput,
     CommandItem,
     CommandList,
-    CommandSeparator,
-    CommandShortcut,
 } from "@/components/ui/command"
 import { toast } from "./ui/use-toast";
-import ExperimentGenerator from "@/components/ui/marketcomponents/experimentgenerator";
+import FunnelExperimentGenerator from "@/components/ui/marketcomponents/funnelexperimentgenerator";
+import FeatureExperimentGenerator from "@/components/ui/marketcomponents/featureexperimentgenerator";
 
 export function QuickCommandDialog({ children }) {
     const [open, setOpen] = React.useState(false)
@@ -48,7 +47,11 @@ export function QuickCommandDialog({ children }) {
                     <CommandGroup heading="Actions">
                         <CommandItem>
                             <FlaskConical className="mr-2 h-4 w-4" />
-                            <ExperimentGenerator />
+                            <FunnelExperimentGenerator />
+                        </CommandItem>
+                        <CommandItem>
+                            <Beaker className="mr-2 h-4 w-4" />
+                            <FeatureExperimentGenerator />
                         </CommandItem>
                     </CommandGroup>
                 </CommandList>
