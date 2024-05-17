@@ -20,11 +20,7 @@ export function VRGalaxy({
   open: boolean;
   setOpen: any;
 }) {
-  const { storeAttentionCallout, storeHeaders } = useFlags();
   const [inventory, setInventory] = useState([]);
-
-  const isVisibleStoreHeaders=storeHeaders;
-  const headerLabel = storeAttentionCallout;
 
   useEffect(() => {
     const data = [
@@ -115,8 +111,6 @@ export function VRGalaxy({
       tableCaption="VR Galaxy Inventory"
       inventory={inventory}
       mainImg={mainImg}
-      headerLabel={headerLabel}
-      isVisibleStoreHeaders={isVisibleStoreHeaders}
     />
   );
 }

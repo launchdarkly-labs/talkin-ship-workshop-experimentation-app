@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { useFlags } from "launchdarkly-react-client-sdk";
 import {
   Sheet,
   // SheetClose,
@@ -40,8 +41,6 @@ const ProductInventoryComponent = ({
   tableCaption,
   inventory,
   mainImg,
-  isVisibleStoreHeaders,
-  headerLabel,
 }: {
   setOpen: any;
   open: boolean;
@@ -50,11 +49,10 @@ const ProductInventoryComponent = ({
   tableCaption?: string;
   inventory: any;
   mainImg: any;
-  isVisibleStoreHeaders?: boolean;
-  headerLabel?: string;
 }) => {
   const LDClient = useLDClient();
   const { toast } = useToast();
+
 
   async function storeOpened() {
     LDClient?.track("store-accessed", LDClient.getContext(), 1);
@@ -65,11 +63,11 @@ const ProductInventoryComponent = ({
       <SheetTrigger
         asChild
         onClick={() => {
-          isVisibleStoreHeaders ? storeOpened() : null;
+          false ? storeOpened() : null;
         }}
       >
         <div className="relative flex items-center justify-center">
-          {isVisibleStoreHeaders && (
+          {false && (
             <motion.div
               initial={{ scale: 0, x: "-100%" }}
               animate={{ scale: 1.15, x: "0%" }}
@@ -82,9 +80,8 @@ const ProductInventoryComponent = ({
               className="flex justify-center absolute top-[10px] right-[20px] z-10 bg-[#EBFF38] px-4 pt-2 pb-[2rem] h-auto marketplace-item-banner-cutout"
             >
               <p className="flex font-sohne uppercase text-xs text-black text-center flex-col justify-around mb-1.5 w-full">
-                {headerLabel?.split("").map((char, index) =>
-                    char === " " ? <span key={index}>&nbsp;</span> : <span key={index}>{char}</span>
-                  )}
+                {/* replace the below line with storeAttentionCallout code here */}
+                Sale
               </p>
             </motion.div>
           )}

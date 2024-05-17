@@ -32,9 +32,8 @@ interface InventoryItem {
 // @ts-nocheck
 export function StoreCart({ cart, setCart }: { cart: any; setCart: any }) {
   const router = useRouter();
-
   const LDClient = useLDClient();
-  const { cartSuggestedItems } = useFlags();
+
 
   const totalCost = (cart || []).reduce(
     (total: number, item: InventoryItem) => total + Number(item.cost),
@@ -134,7 +133,7 @@ export function StoreCart({ cart, setCart }: { cart: any; setCart: any }) {
               </Button>
 
             </SheetTrigger>
-            {cartSuggestedItems ? (
+            {false ? (
               <SuggestedItems
                 cart={cart}
                 setCart={setCart}
