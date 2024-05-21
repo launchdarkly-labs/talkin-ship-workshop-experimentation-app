@@ -22,20 +22,12 @@ export const LoginProvider = ({ children }) => {
     context.user.name = user;
     context.user.email = email;
     context.user.key = email;
-    context.audience.key = uuidv4().slice(0, 10)
     setIsLoggedIn(true);
     setUser(user);
     setEmail(email);
 
     await client.identify(context);
   };
-
-  const updateAudienceContext = async () => {
-    const context = await client?.getContext();
-    console.log("updateAudienceContext",context)
-    context.audience.key = uuidv4().slice(0, 10);
-    await client.identify(context);
-  }
 
   const logoutUser = async () => {
 
@@ -78,7 +70,6 @@ export const LoginProvider = ({ children }) => {
         setEnrolledInLaunchClub,
         launchClubStatus,
         setLaunchClubStatus,
-        updateAudienceContext,
         loginUser,
         logoutUser,
       }}

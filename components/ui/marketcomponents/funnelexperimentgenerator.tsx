@@ -6,16 +6,16 @@ import {
 import React, { useState, useEffect, useRef, useContext } from "react";
 import LoginContext from "@/utils/contexts/login";
 import { useFlags, useLDClient } from "launchdarkly-react-client-sdk";
+import { v4 as uuidv4 } from 'uuid';
 
 
 export default function FunnelExperimentGenerator() {
     const client = useLDClient();
-    const { updateAudienceContext } = useContext(LoginContext);
+    const { loginUser } = useContext(LoginContext);
     const [expGenerator, setExpGenerator] = useState(false);
     const [progress, setProgress] = useState(0);
-
     const updateContext = async () => {
-        updateAudienceContext();
+        await loginUser('user-'+uuidv4(), 'user-'+uuidv4()+'@launchmail.io');
     }
 
     useEffect(() => {
@@ -90,6 +90,7 @@ export default function FunnelExperimentGenerator() {
             await updateContext();
         }
         setExpGenerator(false);
+        await loginUser('user', 'user@launchmail.io')
     }
 
     return (

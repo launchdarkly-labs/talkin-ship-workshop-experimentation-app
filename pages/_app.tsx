@@ -28,9 +28,10 @@ if (typeof window !== "undefined") {
     context: {
       kind: "multi",
       user: {
-        key: "jenn@launchmail.io",
-        name: "Jenn",
-        email: "jenn@launchmail.io",
+        key: "user@launchmail.io",
+        name: "user",
+        anonymous: true,
+        email: "user@launchmail.io",
         appName: "LD Demo",
       },
       device: {
@@ -50,9 +51,6 @@ if (typeof window !== "undefined") {
         name: "a380",
         airplane: "a380",
       },
-      audience: {
-        key: uuidv4().slice(0, 6),
-      }
     },
   });
 
