@@ -52,6 +52,8 @@ const ProductInventoryComponent = ({
 }) => {
   const LDClient = useLDClient();
   const { toast } = useToast();
+  const { storeAttentionCallout, storeHeaders } = useFlags();
+
 
 
   async function storeOpened() {
@@ -63,11 +65,11 @@ const ProductInventoryComponent = ({
       <SheetTrigger
         asChild
         onClick={() => {
-          false ? storeOpened() : null;
+          storeHeaders ? storeOpened() : null;
         }}
       >
         <div className="relative flex items-center justify-center">
-          {false && (
+          {storeHeaders && (
             <motion.div
               initial={{ scale: 0, x: "-100%" }}
               animate={{ scale: 1.15, x: "0%" }}
@@ -81,7 +83,9 @@ const ProductInventoryComponent = ({
             >
               <p className="flex font-sohne uppercase text-xs text-black text-center flex-col justify-around mb-1.5 w-full">
                 {/* replace the below line with storeAttentionCallout code here */}
-                Sale
+                {storeAttentionCallout?.split("").map((char, index) =>
+                  char === " " ? <span key={index}>&nbsp;</span> : <span key={index}>{char}</span>
+                )}
               </p>
             </motion.div>
           )}
